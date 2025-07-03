@@ -74,7 +74,7 @@ pdf2retxt/
 ├── input/                   # Place PDF files here
 ├── output/                  # Redacted text files saved here
 ├── text_redact.py           # Main program
-├── terms_to_redact.txt      # Redaction configuration
+├── terms_to_redact.txt      # Keywords or phrases to be redacted
 └── README.md                # This file
 ```
 
@@ -209,7 +209,7 @@ When contributing to this project:
 
 ## 📝 License
 
-Copyright (c) 2024 Sam Ling
+Copyright (c) 2025 Sam Ling
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to
 deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
