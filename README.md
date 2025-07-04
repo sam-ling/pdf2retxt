@@ -1,6 +1,6 @@
 # PDF to Redacted Text Converter
 
-A Python-based tool for extracting text from PDF documents while redacting sensitive information for data privacy and security purposes. The redacted text output is optimized for uploading to external tools like LLMs to recreate content in HTML or other structured formats.
+A Python-based tool for extracting text from PDF documents while redacting sensitive information for data privacy and security purposes. The redacted .txt file is optimized for uploading to external tools like LLMs to recreate content in HTML or other structured formats.
 
 ## 🎯 Purpose
 
@@ -10,6 +10,26 @@ This tool addresses the need to:
 - Prepare sanitized text for external processing
 - Enable safe document transformation and restructuring
 - Maintain document privacy when using AI/cloud services
+
+The redaction method used is cryptographically secure against reversal because:
+
+1. Information Destruction: The original text is completely replaced with [REDACTED] - the original data is not preserved anywhere in the output file
+2. No Encoding/Encryption: It's true replacement, not encoding or encryption that could be reversed
+3. Regex Substitution: Uses re.sub() which overwrites the matched text entirely
+
+✅ Secure against reversal: No computational method can recover the original text from [REDACTED] markers alone
+
+⚠️ Potential vulnerabilities to consider:
+- Context clues from surrounding text
+- Partial matches that weren't caught
+- Formatting patterns that might reveal information structure
+- Metadata in the original PDF that isn't redacted
+
+Recommendations for stronger security:
+- Review redacted output manually before sharing
+- Use broad redaction terms to catch variations
+- Consider redacting surrounding context for highly sensitive data
+- Ensure the original PDF files are securely deleted after processing
 
 ## 🛠️ Technology Stack
 
@@ -74,7 +94,7 @@ pdf2retxt/
 ├── input/                   # Place PDF files here
 ├── output/                  # Redacted text files saved here
 ├── text_redact.py           # Main program
-├── terms_to_redact.txt      # Keywords or phrases to be redacted
+├── terms_to_redact.txt      # Keywords to be redacted
 └── README.md                # This file
 ```
 
@@ -182,15 +202,6 @@ Convert this redacted text to HTML format while:
 - Maintaining document flow and organization
 - Adding semantic HTML tags for better structure
 ```
-
-## 📊 Logging and Monitoring
-
-The tool provides comprehensive logging:
-- **INFO Level**: Processing status and progress
-- **ERROR Level**: File processing errors and validation failures
-- **DEBUG Level**: Detailed redaction statistics
-
-Log format: `%(asctime)s - %(levelname)s - %(message)s`
 
 ## 🛡️ Security Considerations
 
